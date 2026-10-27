@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-RepoNavigator is a Raycast extension for opening development-related windows (repositories, IDEs, deploy pages). Built with TypeScript, React, and the Raycast API.
+Raymosh is a Raycast extension for opening development-related windows (repositories, IDEs, deploy pages). Built with TypeScript, React, and the Raycast API.
 
 ## Development Commands
 

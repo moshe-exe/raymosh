@@ -1,6 +1,11 @@
 {
   "root": [
     {
+      "label": "Configure Extension",
+      "shortcut": "cf",
+      "action": { "type": "command", "value": "echo 'cd ~/Repositories/raymosh && claude' | pbcopy" }
+    },
+    {
       "label": "Mentorium",
       "shortcut": "m",
       "children": [
@@ -16,7 +21,7 @@
             {
               "label": "IDE",
               "shortcut": "maaid",
-              "action": { "type": "command", "value": "zed ~/Repositories/mentorium-ai-agents" }
+              "action": { "type": "command", "value": "code ~/Repositories/mentorium-ai-agents" }
             },
             {
               "label": "Actions",
@@ -47,7 +52,7 @@
             {
               "label": "IDE",
               "shortcut": "mbeid",
-              "action": { "type": "command", "value": "zed ~/Repositories/mentorium-ai-backend" }
+              "action": { "type": "command", "value": "code ~/Repositories/mentorium-ai-backend" }
             },
             {
               "label": "Actions",
@@ -78,7 +83,7 @@
             {
               "label": "IDE",
               "shortcut": "mclid",
-              "action": { "type": "command", "value": "zed ~/Repositories/mentorium-ai-cloud" }
+              "action": { "type": "command", "value": "code ~/Repositories/mentorium-ai-cloud" }
             },
             {
               "label": "Actions",
@@ -99,7 +104,7 @@
             {
               "label": "IDE",
               "shortcut": "mdoid",
-              "action": { "type": "command", "value": "zed ~/Repositories/mentorium-ai-docs" }
+              "action": { "type": "command", "value": "code ~/Repositories/mentorium-ai-docs" }
             }
           ]
         },
@@ -115,7 +120,7 @@
             {
               "label": "IDE",
               "shortcut": "mfeid",
-              "action": { "type": "command", "value": "zed ~/Repositories/mentorium-ai-frontend" }
+              "action": { "type": "command", "value": "code ~/Repositories/mentorium-ai-frontend" }
             },
             {
               "label": "Actions",
@@ -146,7 +151,7 @@
             {
               "label": "IDE",
               "shortcut": "mspid",
-              "action": { "type": "command", "value": "zed ~/Repositories/mentorium-ai-staff-portal" }
+              "action": { "type": "command", "value": "code ~/Repositories/mentorium-ai-staff-portal" }
             },
             {
               "label": "Actions",
@@ -318,6 +323,38 @@
               "label": "IDE",
               "shortcut": "apaid",
               "action": { "type": "command", "value": "zed ~/Repositories/agentman-platform-app" }
+            }
+          ]
+        },
+        {
+          "label": "chain-of-agents-studio-api",
+          "shortcut": "asa",
+          "children": [
+            {
+              "label": "GitHub",
+              "shortcut": "asagh",
+              "action": { "type": "link", "value": "https://github.com/ChainOfAgents/chain-of-agents-studio-api" }
+            },
+            {
+              "label": "IDE",
+              "shortcut": "asaid",
+              "action": { "type": "command", "value": "zed ~/Repositories/chain-of-agents-studio-api" }
+            }
+          ]
+        },
+        {
+          "label": "chain-of-agents-studio-website",
+          "shortcut": "asw",
+          "children": [
+            {
+              "label": "GitHub",
+              "shortcut": "aswgh",
+              "action": { "type": "link", "value": "https://github.com/ChainOfAgents/chain-of-agents-studio-website" }
+            },
+            {
+              "label": "IDE",
+              "shortcut": "aswid",
+              "action": { "type": "command", "value": "zed ~/Repositories/chain-of-agents-studio-website" }
             }
           ]
         }

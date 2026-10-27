@@ -1,8 +1,8 @@
 {
   "$schema": "https://www.raycast.com/schemas/extension.json",
-  "name": "reponavigator",
-  "title": "RepoNavigator",
-  "description": "Easy opening relevant windows related to your development work\n",
+  "name": "raymosh",
+  "title": "Raymosh",
+  "description": "Easy opening relevant windows related to your development work",
   "icon": "extension-icon.png",
   "author": "moshefabricio",
   "platforms": [
@@ -14,27 +14,6 @@
   ],
   "license": "MIT",
   "commands": [
-    {
-      "name": "repo",
-      "title": "repo",
-      "subtitle": "Repository",
-      "description": "Open remote repository",
-      "mode": "view"
-    },
-    {
-      "name": "ide",
-      "title": "ide",
-      "subtitle": "Open in IDE",
-      "description": "",
-      "mode": "view"
-    },
-    {
-      "name": "deploy",
-      "title": "deploy",
-      "subtitle": "Deploy",
-      "description": "Open deploy page",
-      "mode": "no-view"
-    },
     {
       "name": "tree",
       "title": "Tree Navigator",
@@ -49,7 +28,7 @@
       "title": "Tree Config File",
       "description": "Path to the JSON file containing the tree structure",
       "type": "file",
-      "required": true
+      "required": false
     }
   ],
   "dependencies": {

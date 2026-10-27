@@ -1,5 +1,15 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { List, ActionPanel, Action, getPreferenceValues, showToast, Toast, open, closeMainWindow, Icon } from "@raycast/api";
+import {
+  List,
+  ActionPanel,
+  Action,
+  getPreferenceValues,
+  showToast,
+  Toast,
+  open,
+  closeMainWindow,
+  Icon,
+} from "@raycast/api";
 import { readFileSync } from "fs";
 import { exec } from "child_process";
 
@@ -27,9 +37,11 @@ interface Preferences {
 // Find the deepest matching node and build breadcrumb trail
 function findMatchingPath(
   nodes: TreeNode[],
-  input: string
+  input: string,
 ): { breadcrumb: TreeNode[]; currentNodes: TreeNode[]; exactMatch: TreeNode | null } {
+  console.log("[findMatchingPath] Input:", input);
   if (!input) {
+    console.log("[findMatchingPath] Empty input, returning root nodes");
     return { breadcrumb: [], currentNodes: nodes, exactMatch: null };
   }
 
@@ -43,9 +55,7 @@ function findMatchingPath(
 
     if (!match) {
       // No match found - filter current nodes by partial match
-      const filtered = currentNodes.filter((n) =>
-        n.shortcut.toLowerCase().startsWith(input.toLowerCase())
-      );
+      const filtered = currentNodes.filter((n) => n.shortcut.toLowerCase().startsWith(input.toLowerCase()));
       return { breadcrumb, currentNodes: filtered, exactMatch: null };
     }
 
@@ -78,6 +88,14 @@ function findMatchingPath(
     }
   }
 
+  console.log(
+    "[findMatchingPath] Result - breadcrumb:",
+    breadcrumb.map((n) => n.shortcut),
+    "exactMatch:",
+    exactMatch?.shortcut,
+    "currentNodes:",
+    currentNodes.map((n) => n.shortcut),
+  );
   return { breadcrumb, currentNodes, exactMatch };
 }
 
@@ -95,11 +113,18 @@ async function openInEdge(url: string): Promise<void> {
 }
 
 async function executeShellCommand(command: string): Promise<void> {
+  const wrappedCommand = `/bin/zsh -l -c '${command.replace(/'/g, "'\\''")}'`;
+  console.log("[executeShellCommand] Original command:", command);
+  console.log("[executeShellCommand] Wrapped command:", wrappedCommand);
   await closeMainWindow();
-  exec(command, { shell: "/bin/zsh" }, (error) => {
+  // Use login shell (-l) to load user's PATH from .zprofile/.zshrc
+  exec(wrappedCommand, (error, stdout, stderr) => {
     if (error) {
+      console.error("[executeShellCommand] Error:", error.message);
+      console.error("[executeShellCommand] Stderr:", stderr);
       showToast({ style: Toast.Style.Failure, title: "Command failed", message: error.message });
     } else {
+      console.log("[executeShellCommand] Success. Stdout:", stdout);
       showToast({ style: Toast.Style.Success, title: "Command executed" });
     }
   });
@@ -133,6 +158,7 @@ export default function Command() {
 
   // Execute action
   const executeAction = useCallback(async (action: TreeAction) => {
+    console.log("[executeAction] Action:", action);
     if (action.type === "link") {
       await openInEdge(action.value);
     } else if (action.type === "command") {
